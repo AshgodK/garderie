@@ -3,6 +3,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "eleve.h"
+#include "activite.h"
 
 
 
@@ -24,8 +26,12 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    eleve ptmp;
+    activite ptmp1;
 };
 
 #endif // MAINWINDOW_H
