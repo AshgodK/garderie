@@ -13,13 +13,15 @@ SOURCES += \
     connection.cpp \
     eleve.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    participation.cpp
 
 HEADERS += \
     activite.h \
     connection.h \
     eleve.h \
-    mainwindow.h
+    mainwindow.h \
+    participation.h
 
 FORMS += \
     mainwindow.ui

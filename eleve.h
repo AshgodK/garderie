@@ -41,12 +41,13 @@ public:
     bool modifier(int);
     QSqlQueryModel *tri_class();
     QSqlQueryModel *tri_id();
-    QSqlQueryModel *tri_nom();
+    QSqlQueryModel *tri_sexe();
     QSqlQueryModel *displayClause(QString cls);
     void notification_ajoutEleve();
     void notification_suppEleve();
     void notification_modifEleve();
     void notification_pdf();
+    void genPdf();
     QVector<double> statistiques();
     void makePlot();
 

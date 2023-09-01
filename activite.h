@@ -53,7 +53,7 @@ public:
     bool ajouter();
     bool supprimer(int);
     bool modifier(int);
-    QSqlQueryModel *tri_class();
+    QSqlQueryModel *tri_nbrP();
     QSqlQueryModel *tri_id();
     QSqlQueryModel *tri_nom();
     QSqlQueryModel *displayClause(QString cls);
@@ -63,6 +63,7 @@ public:
     void notification_pdf();
     QVector<double> statistiques();
     void makePlot();
+    void gen_pdf();
 
 
 
