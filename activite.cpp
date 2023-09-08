@@ -29,14 +29,14 @@ bool activite::ajouter()
     QString res1 = QString::number(nbrP);
 
 
-    query.prepare("INSERT INTO activite(id_a,nom,description,adresse,type,etat,nbrP)""VALUES (:id_a,:nom,:description,:adresse,:type,:etat,:nbrP)");
-    query.bindValue(":id_a",res);
+    query.prepare("INSERT INTO activite(nom,description,adresse,type,etat)""VALUES (:nom,:description,:adresse,:type,:etat)");
+
     query.bindValue(":nom",nom);
     query.bindValue(":description",description);
     query.bindValue(":adresse",adresse);
     query.bindValue(":type",type);
     query.bindValue(":etat",etat);
-    query.bindValue(":nbrP",res1);
+   // query.bindValue(":nbrP",res1);
 
 
 
@@ -149,7 +149,7 @@ QSqlQueryModel *activite::displayClause(QString cls)
 
 void activite::gen_pdf()
 {
-    QPdfWriter pdf("D:/UNI/QTP/credit/PDF/Pdfactivite.pdf");
+    QPdfWriter pdf("C:/Users/RayenSabri/Desktop/achref qt/garderie/PDF/Pdfactivite.pdf");
         QPainter painter(&pdf);
         int i = 4000;
         painter.setPen(Qt::blue);

@@ -26,14 +26,12 @@ public:
     bool ajouter();
     bool supprimer(int);
     bool modifier(int);
-    QSqlQueryModel *tri_eleve();
+    QSqlQueryModel *tri_id_a();
     QSqlQueryModel *tri_id();
-    QSqlQueryModel *tri_activite();
+    QSqlQueryModel *tri_id_e();
     QSqlQueryModel *displayClause(QString cls);
-    void notification_ajoutPart();
-    void notification_suppPart();
-    void notification_modifPart();
-    void notification_pdf();
+
+    void notification();
     QVector<double> statistiques();
     void makePlot();
 

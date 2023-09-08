@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql printsupport serialport charts multimedia multimediawidgets widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,14 +14,16 @@ SOURCES += \
     eleve.cpp \
     main.cpp \
     mainwindow.cpp \
-    participation.cpp
+    participation.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
     activite.h \
     connection.h \
     eleve.h \
     mainwindow.h \
-    participation.h
+    participation.h \
+    qcustomplot.h
 
 FORMS += \
     mainwindow.ui

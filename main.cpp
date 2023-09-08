@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     Connection c;
     bool test=c.createconnect();
 
-    QFile file("D:/UNI/QTP/credit/style.qss");
+    QFile file("C:/Users/RayenSabri/Desktop/achref qt/garderie/style.qss");
     file.open(QFile::ReadOnly);
 
     QString styleSheet { QLatin1String(file.readAll()) };
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     //setup stylesheet
     a.setStyleSheet(styleSheet);
     MainWindow w;
-    if(!test)
+    if(test)
     {w.show();
         QMessageBox::information(nullptr, QObject::tr("database is open"),
                                  QObject::tr("connection successful.\n"

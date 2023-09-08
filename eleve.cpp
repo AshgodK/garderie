@@ -9,7 +9,7 @@ eleve::eleve()
 
 }
 
-eleve::eleve(int a,QString b,QString c,QString d,QString e,QString f,QString g,QString h)
+eleve::eleve(int a,QString b,QString c,QString d,QString e,QString f,QString g,QString h,int i)
 {
     id_e=a;
     nom=b;
@@ -19,16 +19,17 @@ eleve::eleve(int a,QString b,QString c,QString d,QString e,QString f,QString g,Q
     classe=f;
     num_tel=g;
     sexe=h;
+    age=i;
 
 }
 bool eleve::ajouter()
 {
     QSqlQuery query;
-    QString res = QString::number(id_e);
+    QString res = QString::number(age);
 
 
-    query.prepare("INSERT INTO eleve(id_m,nom,prenom,adresse,email,classe,num_tel,sexe)""VALUES (:id_m,:nom,:prennom,:adresse,:email,:classe,:num_tel,:sexe)");
-    query.bindValue(":id_m",res);
+    query.prepare("INSERT INTO eleve(nom,prenom,adresse,email,classe,num_tel,sexe,age)""VALUES (:nom,:prenom,:adresse,:email,:classe,:num_tel,:sexe,:age)");
+    query.bindValue(":age",res);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
     query.bindValue(":adresse",adresse);
@@ -54,6 +55,7 @@ QSqlQueryModel * eleve::afficher()
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("email"));
     model->setHeaderData(6,Qt::Horizontal,QObject::tr("num_tel"));
     model->setHeaderData(7,Qt::Horizontal,QObject::tr("sexe"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("age"));
 
     return model;
 }
@@ -72,9 +74,10 @@ bool eleve::modifier(int id)
 {
     QSqlQuery query;
     QString res = QString::number(id);
-
-    query.prepare("UPDATE eleve SET nom=:nom,prenom=:prenom,adresse=:adresse,email=:email,classe=:classe,num_tel=:num_tel,sexe=:sexe WHERE id_e=:id");
+    QString res2 = QString::number(age);
+    query.prepare("UPDATE eleve SET nom=:nom,prenom=:prenom,adresse=:adresse,email=:email,classe=:classe,num_tel=:num_tel,sexe=:sexe,age=:age WHERE id_e=:id");
     query.bindValue(":id",res);
+    query.bindValue(":age",res2);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
     query.bindValue(":adresse",adresse);
@@ -89,7 +92,7 @@ bool eleve::modifier(int id)
 
 void eleve::genPdf()
 {
-    QPdfWriter pdf("D:/UNI/QTP/credit/PDF/PdfEleve.pdf");
+    QPdfWriter pdf("C:/Users/RayenSabri/Desktop/achref qt/garderie/PDF/PdfEleve.pdf");
         QPainter painter(&pdf);
         int i = 4000;
         painter.setPen(Qt::blue);
@@ -108,8 +111,9 @@ void eleve::genPdf()
         painter.drawText(3300,3300,"adresse");
         painter.drawText(4300,3300,"classe");
         painter.drawText(5300,3300,"email");
-        painter.drawText(6300,3300,"numTel");
-        painter.drawText(7300,3300,"sexe");
+        painter.drawText(7000,3300,"numTel");
+        painter.drawText(8000,3300,"sexe");
+        painter.drawText(9000,3300,"age");
 
 
 
@@ -125,8 +129,9 @@ void eleve::genPdf()
             painter.drawText(3300,i,query.value(3).toString());
             painter.drawText(4300,i,query.value(4).toString());
             painter.drawText(5300,i,query.value(5).toString());
-            painter.drawText(6300,i,query.value(6).toString());
-            painter.drawText(7300,i,query.value(7).toString());
+            painter.drawText(7000,i,query.value(6).toString());
+            painter.drawText(8000,i,query.value(7).toString());
+            painter.drawText(9000,i,query.value(8).toString());
 
 
 
@@ -152,6 +157,8 @@ QSqlQueryModel * eleve::tri_id()
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("email"));
     model->setHeaderData(6,Qt::Horizontal,QObject::tr("num_tel"));
     model->setHeaderData(7,Qt::Horizontal,QObject::tr("sexe"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("age"));
+
     return model;
 }
 
@@ -168,6 +175,8 @@ QSqlQueryModel * eleve::tri_class()
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("email"));
     model->setHeaderData(6,Qt::Horizontal,QObject::tr("num_tel"));
     model->setHeaderData(7,Qt::Horizontal,QObject::tr("sexe"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("age"));
+
     return model;
 }
 
@@ -184,6 +193,8 @@ QSqlQueryModel * eleve::tri_sexe()
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("email"));
     model->setHeaderData(6,Qt::Horizontal,QObject::tr("num_tel"));
     model->setHeaderData(7,Qt::Horizontal,QObject::tr("sexe"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("age"));
+
     return model;
 }
 
@@ -200,10 +211,59 @@ QSqlQueryModel *eleve::displayClause(QString cls)
     model->setHeaderData(5,Qt::Horizontal,QObject::tr("email"));
     model->setHeaderData(6,Qt::Horizontal,QObject::tr("num_tel"));
     model->setHeaderData(7,Qt::Horizontal,QObject::tr("sexe"));
+    model->setHeaderData(8,Qt::Horizontal,QObject::tr("age"));
+
 
     return model;
 }
 
 
+QVector<double> eleve::statistiques()
+{
+    QSqlQuery q;
+    QVector<double> stat(5);
+    stat[0]=0;
+    stat[1]=0;
+    stat[2]=0;
+    stat[3]=0;
+    stat[4]=0;
 
+
+    q.prepare("SELECT age FROM eleve WHERE age <=4  ");
+    q.exec();
+    while (q.next())
+    {
+            stat[0]++;
+
+    }
+    q.prepare("SELECT age FROM eleve WHERE 4<age and age<=7");
+    q.exec();
+    while (q.next())
+    {
+            stat[1]++;
+
+    }
+    q.prepare("SELECT age FROM eleve WHERE 7<age and age<=10");
+    q.exec();
+    while (q.next())
+    {
+            stat[2]++;
+
+    }
+    q.prepare("SELECT age FROM eleve WHERE 10<age and age<=13");
+    q.exec();
+    while (q.next())
+    {
+            stat[3]++;
+
+    }
+    q.prepare("SELECT age FROM eleve WHERE 13<age ");
+    q.exec();
+    while (q.next())
+    {
+            stat[4]++;
+
+    }
+    return stat;
+}
 

@@ -13,7 +13,7 @@ class eleve
 public:
     eleve();
 
-    eleve(int,QString,QString,QString,QString,QString,QString,QString);
+    eleve(int,QString,QString,QString,QString,QString,QString,QString,int);
     int get_id(){return id_e;}
     QString get_nom(){return nom;}
     QString get_prenom(){return prenom;}
@@ -22,6 +22,7 @@ public:
     QString get_adresse(){return adresse;}
     QString get_num_tel(){return num_tel;}
     QString get_email(){return email;}
+    int get_age(){return age;}
 
     //Setters
     void set_id(int a){id_e=a;}
@@ -32,6 +33,7 @@ public:
     void set_class(QString c){classe=c;}
     void set_sexe(QString s){sexe=s;}
     void set_tel(QString t){num_tel=t;}
+    void set_age(int a){age=a;}
 
 
     //other functions
@@ -55,6 +57,7 @@ public:
 
 private:
     int id_e;
+    int age;
 
     QString nom;
     QString prenom;

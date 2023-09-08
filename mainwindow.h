@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include "eleve.h"
 #include "activite.h"
+#include "participation.h"
 
 
 
@@ -20,6 +21,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void makePlot();
+
 
 private slots:
     void on_pushButton_2_clicked();
@@ -66,24 +69,35 @@ private slots:
 
     void on_lineEdit_eleve_sea_id_textChanged(const QString &arg1);
 
-    void on_lineEdit_eleve_sea_nom_textChanged(const QString &arg1);
-
-    void on_lineEdit_eleve_sea_classe_textChanged(const QString &arg1);
 
     void on_lineEdit_act_sea_id_textChanged(const QString &arg1);
 
-    void on_lineEdit_act_sea_nom_textChanged(const QString &arg1);
 
-    void on_lineEdit_act_sea_type_textChanged(const QString &arg1);
 
     void on_pushButton_act_pdf_clicked();
 
     void on_pushButton_eleve_pdf_clicked();
 
+    void on_pushButton_stat_act_clicked();
+
+    void on_pushButton_ajout_part_clicked();
+
+    void on_pushButton_Del_part_clicked();
+
+    void on_tableView_particp_doubleClicked(const QModelIndex &index);
+
+    void on_pushButton_mod_part_clicked();
+
+    void on_pushButton_tri_part_act_clicked();
+
+    void on_pushButton_tri_part_eleve_clicked();
+
 private:
     Ui::MainWindow *ui;
     eleve ptmp;
     activite ptmp1;
+    participation ptmp2;
+    QRegExp email_regex,chaine_regex;
 };
 
 #endif // MAINWINDOW_H
